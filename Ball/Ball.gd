@@ -3,7 +3,16 @@ extends RigidBody2D
 var min_speed = 100.0
 var max_speed = 600.0
 var accelerate = false
-var decay = 0.04
+var time_highlight = 0.4
+var time_highlight_size = 0.3
+
+var wobble_period = 0.0
+var wobble_amplitude = 0.0
+export var wobble_max = 5
+var wobble_direction = Vector2.ZERO
+var decay_wobble = 0.15
+
+export var distort_effect = 0.0002
 
 func _ready():
 	contact_monitor = true
@@ -18,11 +27,12 @@ func _ready():
 
 func _on_Ball_body_entered(body):
 	if body.has_method("hit"):
-		body.hit()
+		body.hit(self)
 		accelerate = true
 	
-	
 func _integrate_forces(state):
+	wobble()
+	distort()
 	if position.y > Global.VP.y + 100:
 		die()
 	if accelerate:
@@ -37,3 +47,9 @@ func _integrate_forces(state):
 
 func die():
 	queue_free()
+
+func wobble():
+	pass
+	
+func distort():
+	pass

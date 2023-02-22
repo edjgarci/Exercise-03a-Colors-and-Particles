@@ -1,6 +1,6 @@
 extends Node2D
 
-export var margin = Vector2(100,90)
+export var margin = Vector2(160,105)
 export var index = Vector2(100,40)
 
 func _ready():

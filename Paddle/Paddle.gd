@@ -3,7 +3,8 @@ extends KinematicBody2D
 var target = Vector2.ZERO
 export var speed = 10.0
 var width = 0
-var decay = 0.02
+export var time_highlight = 0.4
+export var time_highlight_size = 0.3
 
 func _ready():
 	width = $CollisionShape2D.get_shape().get_extents().x
@@ -17,5 +18,5 @@ func _input(event):
 	if event is InputEventMouseMotion:
 		target.x += event.relative.x
 
-func hit():
-	pass
+func hit(_ball):
+	$Confetti.emitting = true
